@@ -7,4 +7,7 @@ describe("Sumar", () => {
   it("deberia devolver solo un numero", () => {
     expect(sumar("4")).toEqual(4);
   });
+  it("deberia devolver una suma de dos numeros dado el 1er delimitador", () => {
+    expect(sumar("7,1")).toEqual(8);
+  });
 });
