@@ -2,7 +2,7 @@ function sumar(cadena) {
   if(cadena == ""){
     return 0;
   }
-  return a + b;
+  return Number(cadena);
 }
 
 export default sumar;
