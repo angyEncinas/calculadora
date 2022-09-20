@@ -28,4 +28,8 @@ describe("Sumar", () => {
   it("deberia ignorar numeros mayores a 1000", () => {
     expect(sumar("//[;] 6-7;4,1,1008")).toEqual(18);
   });
+  it("deberia tomar en cuenta delimitadores con mas de 1 caracter", () => {
+    expect(sumar("//[***] 1***2***3")).toEqual(6);
+  });
+
 });

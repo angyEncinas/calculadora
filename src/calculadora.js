@@ -20,7 +20,12 @@ function separarPorDelimitador(cadena){
   if(cadena[0] == '/') {
     var delimitador = encontrarDelimitador(cadena);
     var parte = cadena.split(' ');
-    suma = parte[1].split(new RegExp(delimitador + '|,|-'));
+    if(delimitador.length==1){
+      suma = parte[1].split(new RegExp(delimitador + '|,|-'));
+    }else{
+      suma = parte[1].split(delimitador);
+    }
+    
   }else{
     var regx = new RegExp(',|-');
     suma = cadena.split(regx);
