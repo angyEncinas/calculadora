@@ -1,4 +1,4 @@
-import sumar from "./calculadora";
+import {sumar,encontrarDelimitador} from "./calculadora";
 
 describe("Sumar", () => {
   it("deberia devolver 0 al recibir una cadena vacia", () => {
@@ -15,5 +15,11 @@ describe("Sumar", () => {
   });
   it("deberia devolver una suma de varios numeros con ambos delimitadores", () => {
     expect(sumar("7-1,6")).toEqual(14);
+  });
+  it("deberia devolver una suma de varios numeros añadiendo un delimitador", () => {
+    expect(sumar("//[;] 6;7;4")).toEqual(17);
+  });
+  it("deberia devolver el delimitador entre parentesis", () => {
+    expect(encontrarDelimitador("//[*] 6*7*4")).toEqual('*');
   });
 });

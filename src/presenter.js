@@ -1,4 +1,4 @@
-import sumar from "./calculadora";
+import {sumar} from "./calculadora";
 
 const first = document.querySelector("#cadena");
 const form = document.querySelector("#sumar-form");
