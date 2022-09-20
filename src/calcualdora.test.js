@@ -25,4 +25,7 @@ describe("Sumar", () => {
   it("deberia devolver una suma de varios numeros añadiendo un delimitador a la lista de delimitadores", () => {
     expect(sumar("//[;] 6-7;4,1")).toEqual(18);
   });
+  it("deberia ignorar numeros mayores a 1000", () => {
+    expect(sumar("//[;] 6-7;4,1,1008")).toEqual(18);
+  });
 });

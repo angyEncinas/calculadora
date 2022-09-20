@@ -6,7 +6,12 @@ function sumar(cadena) {
   cadenaTrans = separarPorDelimitador(cadena);
   let suma =0;
     for(var i=0;i<cadenaTrans.length;i++){
-      suma = suma + Number(cadenaTrans[i]);
+      var numero = Number(cadenaTrans[i]);
+      if(numero<=1000){
+        suma = suma + numero;
+      }else{
+        suma = suma + 0;
+      }
     }
   return suma;
 }
