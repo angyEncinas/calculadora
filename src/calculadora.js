@@ -23,7 +23,7 @@ function separarPorDelimitador(cadena){
     if(delimitadores.length == 1){
       var delimitador = delimitadores[0];
       if(delimitador.length==1){
-        suma = parte[1].split(new RegExp(delimitador + '|,|-'));
+        suma = parte[1].split(new RegExp('['+delimitador + ',-]'));
       }else{
         suma = parte[1].split(delimitador);
       }
