@@ -22,4 +22,7 @@ describe("Sumar", () => {
   it("deberia devolver el delimitador entre parentesis", () => {
     expect(encontrarDelimitador("//[*] 6*7*4")).toEqual('*');
   });
+  it("deberia devolver una suma de varios numeros añadiendo un delimitador a la lista de delimitadores", () => {
+    expect(sumar("//[;] 6-7;4,1")).toEqual(18);
+  });
 });
