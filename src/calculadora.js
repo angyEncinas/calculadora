@@ -18,13 +18,20 @@ function sumar(cadena) {
 function separarPorDelimitador(cadena){
   let suma = [];
   if(cadena[0] == '/') {
-    var delimitador = encontrarDelimitador(cadena);
+    var delimitadores = encontrarDelimitador(cadena);
     var parte = cadena.split(' ');
-    if(delimitador.length==1){
-      suma = parte[1].split(new RegExp(delimitador + '|,|-'));
-    }else{
-      suma = parte[1].split(delimitador);
+    if(delimitadores.length == 1){
+      var delimitador = delimitadores[0];
+      if(delimitador.length==1){
+        suma = parte[1].split(new RegExp(delimitador + '|,|-'));
+      }else{
+        suma = parte[1].split(delimitador);
+      }
     }
+    else{
+      suma = parte[1].split(crearExpresionBusqueda(delimitadores));
+    }
+    
     
   }else{
     var regx = new RegExp(',|-');
@@ -39,6 +46,15 @@ function encontrarDelimitador(cadena){
   for(var i=0; i<conjunto.length; i++){
     delimitadores[i]= conjunto[i].replace(/[\[\]]/g, '');
   }
-  return delimitadores[0];
+  return delimitadores;
 }
-export {sumar,encontrarDelimitador,separarPorDelimitador};
+function crearExpresionBusqueda(delimitadores){
+  var cadenaInicial = '[';
+  for(var i=0; i<delimitadores.length; i++){
+    cadenaInicial = cadenaInicial+delimitadores[i];
+  }
+  cadenaInicial = cadenaInicial+',-]'
+  var expresionBusqueda = new RegExp(cadenaInicial);
+  return expresionBusqueda;
+}
+export {sumar,encontrarDelimitador,separarPorDelimitador,crearExpresionBusqueda};

@@ -1,4 +1,4 @@
-import {sumar,encontrarDelimitador} from "./calculadora";
+import {sumar,separarPorDelimitador,encontrarDelimitador,crearExpresionBusqueda} from "./calculadora";
 
 describe("Sumar", () => {
   it("deberia devolver 0 al recibir una cadena vacia", () => {
@@ -19,9 +19,6 @@ describe("Sumar", () => {
   it("deberia devolver una suma de varios numeros añadiendo un delimitador", () => {
     expect(sumar("//[;] 6;7;4")).toEqual(17);
   });
-  it("deberia devolver el delimitador entre parentesis", () => {
-    expect(encontrarDelimitador("//[*] 6*7*4")).toEqual('*');
-  });
   it("deberia devolver una suma de varios numeros añadiendo un delimitador a la lista de delimitadores", () => {
     expect(sumar("//[;] 6-7;4,1")).toEqual(18);
   });
@@ -31,5 +28,28 @@ describe("Sumar", () => {
   it("deberia tomar en cuenta delimitadores con mas de 1 caracter", () => {
     expect(sumar("//[***] 1***2***3")).toEqual(6);
   });
+  it("deberia tomar en cuenta multiples delimitadores", () => {
+    expect(sumar("//[*][%] 1*2%3,7-9")).toEqual(22);
+  });
+  it("deberia tomar en cuenta multiples delimitadores2", () => {
+    expect(sumar("//[*][%][&] 1*2%3,7-9&1")).toEqual(23);
+  });
+  
+});
+describe("Separar por delimitador", () => {
+  it("deberia separar", () => {
+    expect(separarPorDelimitador("//[*][%] 1*2%3,7-9")).toEqual(["1", "2", "3", "7", "9"]);
+  });
+});
+describe("Encontrar una cadena de delimitadores", () => {
+  it("deberia encontrar cadena de delimitadores", () => {
+    expect(encontrarDelimitador("//[*][%] 1*2%3,7-9")).toEqual(["*", "%"]);
+  });
+});
 
+describe("Crear expresión de busqueda", () => {
+  it("deberia crear expresion de busqueda", () => {
+    var expresion = encontrarDelimitador("//[*][%] 1*2%3,7-9");
+    expect(crearExpresionBusqueda(expresion)).toEqual(/[*%,-]/);
+  });
 });
